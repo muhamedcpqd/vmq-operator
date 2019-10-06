@@ -130,6 +130,7 @@ func makeStatefulSetSpec(instance *vernemqv1alpha1.VerneMQ) (*appsv1.StatefulSet
 	curl -L http://$VMQ_BUNDLER_HOST/bundle.tar.gz | tar xvz -C plugins && \
 	eval "echo \"$(echo $VERNEMQ_CONF | base64 -d)\"" > /vernemq/etc/vernemq.conf && \
 	eval "echo \"$(echo $VM_ARGS | base64 -d)\"" > /vernemq/etc/vm.args && \
+	/vernemq/vmq_dojot.sh && \
 	/vernemq/bin/vernemq console -noshell -noinput`}
 
 	vernemqPreStopCommand := []string{"/bin/sh", "-c", fmt.Sprintf(`
